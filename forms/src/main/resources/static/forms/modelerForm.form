@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 2,
+  "components": [
+    {
+      "label": "Name",
+      "type": "textfield",
+      "id": "Field_0nbl6pq",
+      "key": "modeler_name",
+      "description": "Name"
+    },
+    {
+      "label": "Vorname",
+      "type": "textfield",
+      "id": "Field_00w0hwv",
+      "key": "modeler_vorname",
+      "description": "Vorname"
+    },
+    {
+      "label": "Score",
+      "type": "number",
+      "id": "Field_0v59gy0",
+      "key": "modeler_score",
+      "description": "score"
+    },
+    {
+      "label": "roundEnded",
+      "type": "checkbox",
+      "id": "Field_0r9cmgi",
+      "key": "modeler_roundEnded",
+      "description": "roundEnded"
+    },
+    {
+      "values": [
+        {
+          "value": "Eins",
+          "label": "Eins"
+        },
+        {
+          "label": "Zwei",
+          "value": "Zwei"
+        }
+      ],
+      "label": "Select",
+      "type": "select",
+      "id": "Field_1wo4gs9",
+      "key": "modeler_select",
+      "description": "Select"
+    },
+    {
+      "action": "submit",
+      "label": "Submit",
+      "type": "button",
+      "id": "Field_058km2w",
+      "key": "field_0hsu5bj"
+    },
+    {
+      "action": "reset",
+      "label": "Reset",
+      "type": "button",
+      "id": "Field_10fil8i",
+      "key": "field_0jfgf3f"
+    }
+  ],
+  "type": "default",
+  "id": "modelerForm"
+}
