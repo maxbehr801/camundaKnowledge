@@ -113,3 +113,8 @@ void shouldExecuteBaFinBeschwerde() {
     assertThat(processInstance).isEnded();
 }
 ```
+## Testergebnis
+Neben dem JUnit-Testergebnis wird im target-Folder auch ein html Bericht erstellt:
+[report.html (nur nach durchgeführtem Test)](/target/process-test-coverage/info.maxbehr.process.BeschwerdeprozessTest/report.html)
+
+![](src/test/resources/TestCoverageReport.png)
