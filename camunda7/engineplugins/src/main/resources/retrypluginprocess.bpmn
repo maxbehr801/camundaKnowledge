@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_12gwwgr" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.3.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
+  <bpmn:process id="retrypluginprocess" name="Retry Plugin Process" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1icmfoh</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1icmfoh" sourceRef="StartEvent_1" targetRef="ST_Daten_aus_CRM_lesen" />
+    <bpmn:sequenceFlow id="Flow_1xhqjqx" sourceRef="ST_Daten_aus_CRM_lesen" targetRef="ST_Adresse_aus_CRM_lesen" />
+    <bpmn:sequenceFlow id="Flow_014zusm" sourceRef="ST_Adresse_aus_CRM_lesen" targetRef="ST_Kundendaten_an_ERP_schicken" />
+    <bpmn:sequenceFlow id="Flow_0lsq2nk" sourceRef="ST_Kundendaten_an_ERP_schicken" targetRef="ST_Adressdaten_in_ERP_anlegen" />
+    <bpmn:endEvent id="Event_1hzozf3">
+      <bpmn:incoming>Flow_148zfhg</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_148zfhg" sourceRef="ST_Adressdaten_in_ERP_anlegen" targetRef="Event_1hzozf3" />
+    <bpmn:serviceTask id="ST_Daten_aus_CRM_lesen" name="Daten aus CRM lesen" camunda:class="info.maxbehr.bpm.delegate.RetryDelegateOne">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="retryProfile" value="CRM" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1icmfoh</bpmn:incoming>
+      <bpmn:outgoing>Flow_1xhqjqx</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="ST_Adresse_aus_CRM_lesen" name="Adrsse aus CRM lesen" camunda:class="info.maxbehr.bpm.delegate.RetryDelegateOne">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="retryProfile" value="CRM" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1xhqjqx</bpmn:incoming>
+      <bpmn:outgoing>Flow_014zusm</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="ST_Kundendaten_an_ERP_schicken" name="Kundendaten an ERP schicken" camunda:class="info.maxbehr.bpm.delegate.RetryDelegateTwo">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="retryProfile" value="ERP" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_014zusm</bpmn:incoming>
+      <bpmn:outgoing>Flow_0lsq2nk</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="ST_Adressdaten_in_ERP_anlegen" name="Adressdaten in ERP anlegen" camunda:class="info.maxbehr.bpm.delegate.RetryDelegateTwo">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="retryProfile" value="ERP" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0lsq2nk</bpmn:incoming>
+      <bpmn:outgoing>Flow_148zfhg</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="retrypluginprocess">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1hzozf3_di" bpmnElement="Event_1hzozf3">
+        <dc:Bounds x="912" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_188umze_di" bpmnElement="ST_Daten_aus_CRM_lesen">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0a25ufg_di" bpmnElement="ST_Adresse_aus_CRM_lesen">
+        <dc:Bounds x="430" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0y6lx6p_di" bpmnElement="ST_Kundendaten_an_ERP_schicken">
+        <dc:Bounds x="590" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_01f2fgb_di" bpmnElement="ST_Adressdaten_in_ERP_anlegen">
+        <dc:Bounds x="750" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1icmfoh_di" bpmnElement="Flow_1icmfoh">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_148zfhg_di" bpmnElement="Flow_148zfhg">
+        <di:waypoint x="850" y="117" />
+        <di:waypoint x="912" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xhqjqx_di" bpmnElement="Flow_1xhqjqx">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="430" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_014zusm_di" bpmnElement="Flow_014zusm">
+        <di:waypoint x="530" y="117" />
+        <di:waypoint x="590" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0lsq2nk_di" bpmnElement="Flow_0lsq2nk">
+        <di:waypoint x="690" y="117" />
+        <di:waypoint x="750" y="117" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
