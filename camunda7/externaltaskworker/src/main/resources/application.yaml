@@ -1,0 +1,9 @@
+server:
+  port: 8081
+
+camunda:
+  bpm:
+    client:
+      base-url: http://localhost:8080/engine-rest
+      async-response-timeout: 10000
+      worker-id: externalTaskWorker_1
