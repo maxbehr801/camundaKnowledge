@@ -118,3 +118,15 @@ Neben dem JUnit-Testergebnis wird im target-Folder auch ein html Bericht erstell
 [report.html (nur nach durchgeführtem Test)](/target/process-test-coverage/info.maxbehr.process.BeschwerdeprozessTest/report.html)
 
 ![](src/test/resources/TestCoverageReport.png)
+
+## Prozesstests mitten im Prozess starten
+[Testklasse](/src/test/java/info/maxbehr/process/MittendrinProzessTest.java)
+```java
+ProcessInstance processInstance = runtimeService()
+    .createProcessInstanceByKey(BESCHWERDEPROZESS)
+    .startBeforeActivity("UT_Briefversand_kontrollieren")
+    .setVariable("beschwerde", "Beschwerde")
+    .execute();
+```
+Es ist zu beachten, dass Usertasks, die vor dem Startpunkt liegen trotzdem als
+aktiv von TaskserviceQueries gefunden werden.
