@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="customerevaluationDRD" name="customerevaluation" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.4.1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.1.0">
+  <decision id="customerevaluationDT" name="Customer evaluation">
+    <decisionTable id="DecisionTable_08n7ymg">
+      <input id="Input_1" label="Country">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>customer_country</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_1jow3uv">
+          <text>"US","UK","EU"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_154sxl2" label="rejected">
+        <inputExpression id="LiteralExpression_1w6fnop" typeRef="boolean">
+          <text>customer_reject</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="customerstatus" name="customerstatus" typeRef="string">
+        <outputValues id="UnaryTests_139s8vz">
+          <text>"rejected","premium","standard"</text>
+        </outputValues>
+      </output>
+      <rule id="DecisionRule_1f6jwq1">
+        <inputEntry id="UnaryTests_053ca79">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_09rbosp">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0io61s6">
+          <text>"rejected"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1e282io">
+        <inputEntry id="UnaryTests_0jteqmf">
+          <text>"US"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xofu73">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_04nxh7t">
+          <text>"standard"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ij0bbj">
+        <inputEntry id="UnaryTests_02ki7s4">
+          <text>"EU"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0760bbx">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0b9f2av">
+          <text>"premium"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0c9yv3a">
+        <inputEntry id="UnaryTests_01lysvl">
+          <text>"UK"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1b7vbv2">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1qxin06">
+          <text>"rejected"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="customerevaluationDT">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
