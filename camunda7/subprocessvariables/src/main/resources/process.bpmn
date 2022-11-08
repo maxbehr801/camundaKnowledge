@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_0fr9mxs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.4.2">
+  <bpmn:process id="subprocessvariables-process" name="subprocessvariables-process" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_1fp17al</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1fp17al" sourceRef="StartEvent_1" targetRef="say-hello" />
+    <bpmn:endEvent id="EndEvent_0x6ir2l">
+      <bpmn:incoming>Flow_0wkg6yf</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_16gzt2m" sourceRef="say-hello" targetRef="Activity_11lqq56" />
+    <bpmn:serviceTask id="say-hello" name="Variable setzen" camunda:delegateExpression="${variableDelegate}">
+      <bpmn:incoming>SequenceFlow_1fp17al</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_16gzt2m</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0ng4my4" sourceRef="Activity_11lqq56" targetRef="Activity_1rcdsci" />
+    <bpmn:subProcess id="Activity_11lqq56" name="subprocess">
+      <bpmn:incoming>SequenceFlow_16gzt2m</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ng4my4</bpmn:outgoing>
+      <bpmn:startEvent id="Event_01xaa33">
+        <bpmn:outgoing>Flow_1gca17x</bpmn:outgoing>
+      </bpmn:startEvent>
+      <bpmn:sequenceFlow id="Flow_1gca17x" sourceRef="Event_01xaa33" targetRef="Activity_14uawuw" />
+      <bpmn:endEvent id="Event_13c0t9t">
+        <bpmn:incoming>Flow_0ae0a6g</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:sequenceFlow id="Flow_0ae0a6g" sourceRef="Activity_14uawuw" targetRef="Event_13c0t9t" />
+      <bpmn:serviceTask id="Activity_14uawuw" name="Variable nochmal setzen" camunda:delegateExpression="${subprocessDelegate}">
+        <bpmn:incoming>Flow_1gca17x</bpmn:incoming>
+        <bpmn:outgoing>Flow_0ae0a6g</bpmn:outgoing>
+      </bpmn:serviceTask>
+    </bpmn:subProcess>
+    <bpmn:sequenceFlow id="Flow_0wkg6yf" sourceRef="Activity_1rcdsci" targetRef="EndEvent_0x6ir2l" />
+    <bpmn:serviceTask id="Activity_1rcdsci" name="final service" camunda:delegateExpression="${finalServiceDelegate}">
+      <bpmn:incoming>Flow_0ng4my4</bpmn:incoming>
+      <bpmn:outgoing>Flow_0wkg6yf</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="subprocessvariables-process">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="159" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1es8gdx_di" bpmnElement="say-hello">
+        <dc:Bounds x="440" y="137" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0x6ir2l_di" bpmnElement="EndEvent_0x6ir2l">
+        <dc:Bounds x="1572" y="159" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0k1tyl9_di" bpmnElement="Activity_1rcdsci">
+        <dc:Bounds x="1239" y="137" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_11gkqx9_di" bpmnElement="Activity_11lqq56" isExpanded="true">
+        <dc:Bounds x="730" y="77" width="350" height="200" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_01xaa33_di" bpmnElement="Event_01xaa33">
+        <dc:Bounds x="770.3333333333334" y="159" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_13c0t9t_di" bpmnElement="Event_13c0t9t">
+        <dc:Bounds x="1022" y="159" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0j3i883_di" bpmnElement="Activity_14uawuw">
+        <dc:Bounds x="860" y="137" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1gca17x_di" bpmnElement="Flow_1gca17x">
+        <di:waypoint x="806" y="177" />
+        <di:waypoint x="860" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ae0a6g_di" bpmnElement="Flow_0ae0a6g">
+        <di:waypoint x="960" y="177" />
+        <di:waypoint x="1022" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1fp17al_di" bpmnElement="SequenceFlow_1fp17al">
+        <di:waypoint x="215" y="177" />
+        <di:waypoint x="440" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ng4my4_di" bpmnElement="Flow_0ng4my4">
+        <di:waypoint x="1080" y="177" />
+        <di:waypoint x="1239" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_16gzt2m_di" bpmnElement="SequenceFlow_16gzt2m">
+        <di:waypoint x="540" y="177" />
+        <di:waypoint x="730" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0wkg6yf_di" bpmnElement="Flow_0wkg6yf">
+        <di:waypoint x="1339" y="177" />
+        <di:waypoint x="1572" y="177" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
