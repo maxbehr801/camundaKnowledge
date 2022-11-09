@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1l9vhk0" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.4.2" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
+  <bpmn:process id="VariableProcess" name="VariableProcess" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_06lb3k2</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_06lb3k2" sourceRef="StartEvent_1" targetRef="Activity_0l41am6" />
+    <bpmn:sequenceFlow id="Flow_0ldn2k9" sourceRef="Activity_0l41am6" targetRef="Activity_0ls16tr" />
+    <bpmn:sequenceFlow id="Flow_0lsdygj" sourceRef="Activity_0ls16tr" targetRef="Activity_1nu2yye" />
+    <bpmn:endEvent id="Event_157jmyh">
+      <bpmn:incoming>Flow_0l3pmp3</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0l3pmp3" sourceRef="Activity_1nu2yye" targetRef="Event_157jmyh" />
+    <bpmn:serviceTask id="Activity_0l41am6" name="create variables" camunda:delegateExpression="${createVariablesDelegate}">
+      <bpmn:incoming>Flow_06lb3k2</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ldn2k9</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:callActivity id="Activity_0ls16tr" name="variable subprocess" calledElement="ReadVariablesSubprocess">
+      <bpmn:extensionElements>
+        <camunda:in sourceExpression="${Variable1}" target="VariableEins" />
+        <camunda:in sourceExpression="${Variable2}" target="VariableZwei" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0ldn2k9</bpmn:incoming>
+      <bpmn:outgoing>Flow_0lsdygj</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:serviceTask id="Activity_1nu2yye" name="read variables" camunda:delegateExpression="${readVariablesDelegate}">
+      <bpmn:incoming>Flow_0lsdygj</bpmn:incoming>
+      <bpmn:outgoing>Flow_0l3pmp3</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="VariableProcess">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="152" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_157jmyh_di" bpmnElement="Event_157jmyh">
+        <dc:Bounds x="722" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0fohwk6_di" bpmnElement="Activity_0l41am6">
+        <dc:Bounds x="240" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0m2ymh1_di" bpmnElement="Activity_0ls16tr">
+        <dc:Bounds x="400" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0f3rx75_di" bpmnElement="Activity_1nu2yye">
+        <dc:Bounds x="560" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_06lb3k2_di" bpmnElement="Flow_06lb3k2">
+        <di:waypoint x="188" y="120" />
+        <di:waypoint x="240" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0l3pmp3_di" bpmnElement="Flow_0l3pmp3">
+        <di:waypoint x="660" y="120" />
+        <di:waypoint x="722" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0ldn2k9_di" bpmnElement="Flow_0ldn2k9">
+        <di:waypoint x="340" y="120" />
+        <di:waypoint x="400" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0lsdygj_di" bpmnElement="Flow_0lsdygj">
+        <di:waypoint x="500" y="120" />
+        <di:waypoint x="560" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
