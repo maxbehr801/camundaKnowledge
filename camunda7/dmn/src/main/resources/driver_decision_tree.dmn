@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Driver_Decision_Tree_DRD" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.4.2" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
+  <decision id="Driver_Decision_Tree_more_65_Decision" name="Driver Decision Tree &#62;= 65 yards">
+    <informationRequirement id="InformationRequirement_0sknhxo">
+      <requiredDecision href="#driver_decision_tree_decision" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_05el6v0" hitPolicy="FIRST">
+      <input id="InputClause_133saaq" label="more than 65 yards">
+        <inputExpression id="LiteralExpression_11loq82" typeRef="boolean" expressionLanguage="feel">
+          <text>moreThan65Yards</text>
+        </inputExpression>
+      </input>
+      <input id="Input_1" label="fairway pinch to &#60; 40 yards for driver">
+        <inputExpression id="InputExpression_1" typeRef="boolean">
+          <text>fairwayLessThan40yards</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_06txh0e" label="can carry hazard without trouble">
+        <inputExpression id="LiteralExpression_0d85jub" typeRef="boolean">
+          <text>canCarryHazardWithoutTrouble</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_05pj9dw" label="woodInHazard">
+        <inputExpression id="LiteralExpression_15ss1d9" typeRef="boolean">
+          <text>woodInHazard</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Club" name="club" typeRef="string">
+        <outputValues id="UnaryTests_09qk52v">
+          <text>"Driver","3 wood"</text>
+        </outputValues>
+      </output>
+      <rule id="DecisionRule_1hgps1s">
+        <inputEntry id="UnaryTests_1x1h4c7">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vgv4qs">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_075dg5t">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1li8ag0">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0fm38xd">
+          <text>"wrong table"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0s35fbz">
+        <inputEntry id="UnaryTests_0us8zsh">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0majc5o">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ws2ees">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ahnczy">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0vxxlti">
+          <text>"Driver"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_04126vc">
+        <inputEntry id="UnaryTests_0k6r81k">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0uzx6ra">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19f2ba7">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0u8ls8z">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0hgmbtt">
+          <text>"Driver"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0fauf6s">
+        <inputEntry id="UnaryTests_1tyzl78">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ec7usa">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1sgixut">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0a5i5p5">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0sr505g">
+          <text>"Driver"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0xf9qee">
+        <inputEntry id="UnaryTests_04n86bl">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_12c2dn9">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0138oym">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1s74lpp">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ffm6pm">
+          <text>"3 wood"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="driver_decision_tree_decision" name="Driver Decision Tree">
+    <decisionTable id="DecisionTable_1ahuazr">
+      <input id="InputClause_0k6fc1k">
+        <inputExpression id="LiteralExpression_0dkgor1" typeRef="long">
+          <text>yards</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_142napi" name="moreThan65Yards" typeRef="boolean" />
+      <rule id="DecisionRule_1wjg5bo">
+        <inputEntry id="UnaryTests_12bwien">
+          <text>&gt;= 65</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1lwsqi1">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_16dxzy9">
+        <inputEntry id="UnaryTests_1rqwows">
+          <text>&lt; 65</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0gyjtgi">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="Driver_Decision_Tree_less_65_Decision" name="Driver Decision Tree &#60; 65 yards">
+    <informationRequirement id="InformationRequirement_1n6btfo">
+      <requiredDecision href="#driver_decision_tree_decision" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_1winy7y" hitPolicy="FIRST">
+      <input id="InputClause_0t23e8t" label="more than 65 yards?">
+        <inputExpression id="LiteralExpression_1t7evlr" typeRef="boolean">
+          <text>moreThan65Yards</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1jhddft" label="does 3 wood remove hazard">
+        <inputExpression id="LiteralExpression_0i1kdf1" typeRef="boolean">
+          <text>woodRemovesHazard</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_056e06g" label="does next club remove hazard">
+        <inputExpression id="LiteralExpression_1n4eocb" typeRef="boolean">
+          <text>nextClubRemoveHazard</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_1oaxezq" label="Club" name="club" typeRef="string">
+        <outputValues id="UnaryTests_0b9d4k8">
+          <text>"3 wood","that club","wth"</text>
+        </outputValues>
+      </output>
+      <rule id="DecisionRule_0ns4dma">
+        <inputEntry id="UnaryTests_0iuxjkw">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_125uf1k">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_12nk6s0">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0awnsiu">
+          <text>"wrong table"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_10zepbr">
+        <inputEntry id="UnaryTests_16potp7">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ecladz">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0gih11a">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0dsyipc">
+          <text>"3 wood"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ibrw2d">
+        <inputEntry id="UnaryTests_1avm7lt">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0tvwmdd">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1nz22cg">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_095kc75">
+          <text>"that club"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ka3toh">
+        <inputEntry id="UnaryTests_1md71rr">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1o42e6t">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ss69w6">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1dxe6zn">
+          <text>"wth"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Driver_Decision_Tree_more_65_Decision">
+        <dc:Bounds height="80" width="180" x="160" y="320" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1h6pzjv" dmnElementRef="driver_decision_tree_decision">
+        <dc:Bounds height="80" width="180" x="360" y="540" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1g2vd0t" dmnElementRef="Driver_Decision_Tree_less_65_Decision">
+        <dc:Bounds height="80" width="180" x="550" y="320" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_05xlc27" dmnElementRef="InformationRequirement_0sknhxo">
+        <di:waypoint x="450" y="540" />
+        <di:waypoint x="250" y="420" />
+        <di:waypoint x="250" y="400" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_0ur01ry" dmnElementRef="InformationRequirement_1n6btfo">
+        <di:waypoint x="450" y="540" />
+        <di:waypoint x="640" y="420" />
+        <di:waypoint x="640" y="400" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
