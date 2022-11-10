@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_0fr9mxs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.4.2">
+  <bpmn:message id="Message_24k4d57" name="StartProcess_Message" />
+  <bpmn:message id="Message_2eikn5p" name="waitMessage" />
+  <bpmn:message id="Message_3tt0672" name="resumeMessage" />
+  <bpmn:process id="EventProcess" name="EventProcess" isExecutable="true">
+    <bpmn:startEvent id="Start_Eventprocess" name="Start Eventprocess" camunda:asyncBefore="true" camunda:asyncAfter="true">
+      <bpmn:outgoing>Flow_1xm9lru</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0cn5y9u" messageRef="Message_24k4d57" />
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1xm9lru" sourceRef="Start_Eventprocess" targetRef="waitmessage" />
+    <bpmn:sequenceFlow id="Flow_0o3uc5u" sourceRef="waitmessage" targetRef="resumeMessage" />
+    <bpmn:sequenceFlow id="Flow_188t60v" sourceRef="resumeMessage" targetRef="Activity_1mhzzrc" />
+    <bpmn:sequenceFlow id="Flow_0k86xpn" sourceRef="Activity_1mhzzrc" targetRef="Event_0hsag4u" />
+    <bpmn:intermediateThrowEvent id="waitmessage" name="waitmessage" camunda:asyncBefore="true" camunda:asyncAfter="true">
+      <bpmn:incoming>Flow_1xm9lru</bpmn:incoming>
+      <bpmn:outgoing>Flow_0o3uc5u</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1idygt9" messageRef="Message_2eikn5p" camunda:delegateExpression="${waitMessageDelegate}" />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:intermediateCatchEvent id="resumeMessage" name="resumeMessage" camunda:asyncBefore="true" camunda:asyncAfter="true">
+      <bpmn:incoming>Flow_0o3uc5u</bpmn:incoming>
+      <bpmn:outgoing>Flow_188t60v</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0vxrpwn" messageRef="Message_3tt0672" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:serviceTask id="Activity_1mhzzrc" name="ErrorThrower" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:delegateExpression="${errorThrowerDelegate}">
+      <bpmn:incoming>Flow_188t60v</bpmn:incoming>
+      <bpmn:outgoing>Flow_0k86xpn</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_15bmcyk" sourceRef="attachedError" targetRef="throw_business_error" />
+    <bpmn:sendTask id="throw_business_error" name="throw business error" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:delegateExpression="${throwBusinessErrorDelegate}">
+      <bpmn:incoming>Flow_15bmcyk</bpmn:incoming>
+      <bpmn:outgoing>Flow_09f0qq2</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:endEvent id="Event_02p7s5m" camunda:asyncBefore="true" camunda:asyncAfter="true">
+      <bpmn:incoming>Flow_09f0qq2</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_09f0qq2" sourceRef="throw_business_error" targetRef="Event_02p7s5m" />
+    <bpmn:boundaryEvent id="attachedError" name="attachedError" attachedToRef="Activity_1mhzzrc">
+      <bpmn:outgoing>Flow_15bmcyk</bpmn:outgoing>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_0b0hfz4" errorRef="Error_1lbcfjm" camunda:errorCodeVariable="errorcode" camunda:errorMessageVariable="errormessage" />
+    </bpmn:boundaryEvent>
+    <bpmn:subProcess id="Activity_1az2evz" triggeredByEvent="true">
+      <bpmn:startEvent id="Event_0unko5j" camunda:asyncBefore="true" camunda:asyncAfter="true">
+        <bpmn:outgoing>Flow_1n6hdbm</bpmn:outgoing>
+        <bpmn:errorEventDefinition id="ErrorEventDefinition_0q20tgf" errorRef="Error_163r2u8" camunda:errorCodeVariable="errorcode" camunda:errorMessageVariable="errormessage" />
+      </bpmn:startEvent>
+      <bpmn:sequenceFlow id="Flow_1n6hdbm" sourceRef="Event_0unko5j" targetRef="throw_error_to_parent" />
+      <bpmn:endEvent id="throw_error_to_parent" name="throw error to parent" camunda:asyncBefore="true" camunda:asyncAfter="true">
+        <bpmn:incoming>Flow_1n6hdbm</bpmn:incoming>
+        <bpmn:messageEventDefinition id="MessageEventDefinition_00zygj5" messageRef="Message_1846rer" camunda:delegateExpression="${throwError2Delegate}" />
+      </bpmn:endEvent>
+    </bpmn:subProcess>
+    <bpmn:endEvent id="Event_0hsag4u" camunda:asyncBefore="true" camunda:asyncAfter="true">
+      <bpmn:incoming>Flow_0k86xpn</bpmn:incoming>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_043mztm" messageRef="Message_11131sj" camunda:delegateExpression="${eventprocessEndedDelegate}" />
+    </bpmn:endEvent>
+  </bpmn:process>
+  <bpmn:error id="Error_1lbcfjm" name="BusinessError" errorCode="e1" camunda:errorMessage="businesserrore1" />
+  <bpmn:message id="Message_1846rer" name="eventprocesserrorMessage" />
+  <bpmn:error id="Error_163r2u8" name="generalError" errorCode="e2" camunda:errorMessage="generalerrore2" />
+  <bpmn:message id="Message_11131sj" name="eventProcessEndedMessage" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="EventProcess">
+      <bpmndi:BPMNShape id="Event_0yqn75q_di" bpmnElement="Start_Eventprocess">
+        <dc:Bounds x="192" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="176" y="145" width="68" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0yyhj6a_di" bpmnElement="waitmessage">
+        <dc:Bounds x="282" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="268" y="145" width="64" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0h6mfkz_di" bpmnElement="resumeMessage">
+        <dc:Bounds x="372" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="350" y="145" width="82" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1xusid3_di" bpmnElement="Activity_1mhzzrc">
+        <dc:Bounds x="470" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0fd7375_di" bpmnElement="throw_business_error">
+        <dc:Bounds x="610" y="200" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_02p7s5m_di" bpmnElement="Event_02p7s5m">
+        <dc:Bounds x="762" y="222" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0ztq9lp_di" bpmnElement="Event_0hsag4u">
+        <dc:Bounds x="632" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1hc89r4_di" bpmnElement="Activity_1az2evz" isExpanded="true">
+        <dc:Bounds x="210" y="330" width="350" height="200" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1oxfg2b_di" bpmnElement="Event_0unko5j">
+        <dc:Bounds x="250" y="412" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0axychn_di" bpmnElement="throw_error_to_parent">
+        <dc:Bounds x="442" y="412" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="428" y="455" width="65" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1n6hdbm_di" bpmnElement="Flow_1n6hdbm">
+        <di:waypoint x="286" y="430" />
+        <di:waypoint x="442" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_0xddfid_di" bpmnElement="attachedError">
+        <dc:Bounds x="522" y="142" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="506" y="185" width="68" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1xm9lru_di" bpmnElement="Flow_1xm9lru">
+        <di:waypoint x="228" y="120" />
+        <di:waypoint x="282" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0o3uc5u_di" bpmnElement="Flow_0o3uc5u">
+        <di:waypoint x="318" y="120" />
+        <di:waypoint x="372" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_188t60v_di" bpmnElement="Flow_188t60v">
+        <di:waypoint x="408" y="120" />
+        <di:waypoint x="470" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0k86xpn_di" bpmnElement="Flow_0k86xpn">
+        <di:waypoint x="570" y="120" />
+        <di:waypoint x="632" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_15bmcyk_di" bpmnElement="Flow_15bmcyk">
+        <di:waypoint x="540" y="178" />
+        <di:waypoint x="540" y="240" />
+        <di:waypoint x="610" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09f0qq2_di" bpmnElement="Flow_09f0qq2">
+        <di:waypoint x="710" y="240" />
+        <di:waypoint x="762" y="240" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
