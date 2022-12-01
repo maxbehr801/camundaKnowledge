@@ -15,7 +15,7 @@ import static org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests.assertT
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class WorkflowTest extends AbstractProcessEngineRuleTest {
+public class  WorkflowTest extends AbstractProcessEngineRuleTest {
 
   @Autowired
   public RuntimeService runtimeService;
