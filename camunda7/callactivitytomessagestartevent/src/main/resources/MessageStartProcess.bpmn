@@ -6,7 +6,7 @@
       <bpmn:messageEventDefinition id="MessageEventDefinition_0evzrdw" messageRef="Message_2cearvt" />
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_1bpd3tr" sourceRef="StartEvent_1" targetRef="Activity_0fgvwtk" />
-    <bpmn:serviceTask id="Activity_0fgvwtk" name="Log" camunda:delegateExpression="${loggingDelegate}">
+    <bpmn:serviceTask id="Activity_0fgvwtk" name="Log" camunda:asyncBefore="true" camunda:delegateExpression="${loggingDelegate}">
       <bpmn:incoming>Flow_1bpd3tr</bpmn:incoming>
       <bpmn:outgoing>Flow_0lfqk1r</bpmn:outgoing>
     </bpmn:serviceTask>

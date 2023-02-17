@@ -16,7 +16,7 @@
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_06pengq</bpmn:incoming>
       <bpmn:outgoing>Flow_0u33itt</bpmn:outgoing>
-      <bpmn:multiInstanceLoopCharacteristics isSequential="true" camunda:collection="inputList" camunda:elementVariable="input">
+      <bpmn:multiInstanceLoopCharacteristics isSequential="true" camunda:asyncBefore="true" camunda:asyncAfter="true" camunda:collection="inputList" camunda:elementVariable="input">
         <bpmn:loopCardinality xsi:type="bpmn:tFormalExpression">${inputList.size()}</bpmn:loopCardinality>
       </bpmn:multiInstanceLoopCharacteristics>
     </bpmn:callActivity>

@@ -29,7 +29,7 @@ public class WorkflowTest extends AbstractProcessEngineRuleTest {
     final String CALL_ACTIVITY_PROCESS_KEY = "CallActivityProcess";
     final String MESSAGE_START_PROCESS_KEY = "MessageStartProcess";
 
-    List<String> inputList = List.of("eins", "zwei");
+    List<String> inputList = List.of("eins", "zwei", "drei");
 
     VariableMap variables = Variables.createVariables().putValue("inputList", inputList);
 
