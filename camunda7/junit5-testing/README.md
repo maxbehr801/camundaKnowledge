@@ -130,3 +130,11 @@ ProcessInstance processInstance = runtimeService()
 ```
 Es ist zu beachten, dass Usertasks, die vor dem Startpunkt liegen trotzdem als
 aktiv von TaskserviceQueries gefunden werden.
+
+## AssertJ und Camunda BPM Assert gleichzeitig
+In case you want to combine Camunda Platform Assert with the assertions provided by AssertJ, your imports should look like this:
+
+```java
+import static org.assertj.core.api.Assertions.*;
+import static org.camunda.bpm.engine.test.assertions.ProcessEngineTests.*;
+```
