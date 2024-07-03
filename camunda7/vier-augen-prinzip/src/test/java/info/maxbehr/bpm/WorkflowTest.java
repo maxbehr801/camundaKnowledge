@@ -32,6 +32,17 @@ public class WorkflowTest extends AbstractProcessEngineRuleTest {
         .hasDefinitionKey("say-hello")
         .hasCandidateUser("demo")
         .isNotAssigned();
+
+
+    runtimeService.createProcessInstanceModification("123")
+            .cancelActivityInstance("123")
+//            .startBeforeActivity("asödklhaslödkh")
+            .execute();
+    runtimeService.createProcessInstanceModification("123")
+//            .cancelActivityInstance("123")
+            .startBeforeActivity("asödklhaslödkh")
+            .execute();
+
   }
 
 }
