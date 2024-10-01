@@ -59,8 +59,10 @@ public class WorkflowTest extends AbstractProcessEngineRuleTest {
         assertThat(processInstance).isStarted()
                 .task("Task_Eventsubprocesstask")
                 .isNotAssigned();
-        taskService.complete(task("Task_Eventsubprocesstask").getId());
         taskService.complete(task("Task_Processtask").getId());
+        assertThat(processInstance).hasPassed("Event_Process_End");
+        assertThat(processInstance).isStarted();
+        taskService.complete(task("Task_Eventsubprocesstask").getId());
         assertThat(processInstance).isEnded();
     }
 

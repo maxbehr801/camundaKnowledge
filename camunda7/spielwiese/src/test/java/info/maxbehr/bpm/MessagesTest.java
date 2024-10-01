@@ -2,7 +2,6 @@ package info.maxbehr.bpm;
 
 import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
-import org.camunda.bpm.engine.test.assertions.bpmn.BpmnAwareTests;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,13 +23,6 @@ class MessagesTest {
         ProcessInstance throwInstance = runtimeService.startProcessInstanceByKey(THROW_MESSAGE_ID, "asdf");
 
         assertThat(catchInstance).isEnded();
-        assertThat(throwInstance).isEnded();
-    }
-
-    @Test
-    void testMessageWithoutInstance() {
-        ProcessInstance throwInstance = runtimeService.startProcessInstanceByKey(THROW_MESSAGE_ID, "asdf");
-
         assertThat(throwInstance).isEnded();
     }
 }

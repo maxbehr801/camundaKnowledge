@@ -32,7 +32,7 @@ class ProzessMitDueDateTest {
         VariableMap variableMap = Variables.createVariables().putValue(DUE_DATE, dateIn6Hours());
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(PROCESS_KEY, UUID.randomUUID().toString(), variableMap);
         assertThat(processInstance).isStarted();
-        Task task = taskQuery().active().singleResult();
+        Task task = taskQuery().processDefinitionKey(PROCESS_KEY).active().singleResult();
         Assertions.assertThat(task.getTaskDefinitionKey()).isEqualTo("Activity_0lb7raj");
         System.out.println(task.getDueDate());
         Assertions.assertThat(task.getDueDate()).isBeforeOrEqualTo(dateIn6Hours());

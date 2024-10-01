@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1g9d5va" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.25.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.20.0">
+  <bpmn:process id="TaskListenerProcess" name="TaskListenerProcess" isExecutable="true" camunda:historyTimeToLive="180">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_03pkf36</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_03pkf36" sourceRef="StartEvent_1" targetRef="Mein_UserTask" />
+    <bpmn:endEvent id="Event_17v1ir6">
+      <bpmn:incoming>Flow_03zfe3j</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_03zfe3j" sourceRef="Mein_UserTask" targetRef="Event_17v1ir6" />
+    <bpmn:userTask id="Mein_UserTask" name="Mein UserTask">
+      <bpmn:extensionElements>
+        <camunda:taskListener delegateExpression="${completeListener}" event="complete" />
+        <camunda:taskListener delegateExpression="${deleteListener}" event="delete" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_03pkf36</bpmn:incoming>
+      <bpmn:outgoing>Flow_03zfe3j</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:boundaryEvent id="Event_1y5wove" name="Abbrechen_event" attachedToRef="Mein_UserTask">
+      <bpmn:outgoing>Flow_1njcnfl</bpmn:outgoing>
+      <bpmn:conditionalEventDefinition id="ConditionalEventDefinition_1fhq7q4" camunda:variableName="abbrechen">
+        <bpmn:condition xsi:type="bpmn:tFormalExpression">${abbrechen==true}</bpmn:condition>
+      </bpmn:conditionalEventDefinition>
+    </bpmn:boundaryEvent>
+    <bpmn:endEvent id="Event_0esw3wo">
+      <bpmn:incoming>Flow_1njcnfl</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1njcnfl" sourceRef="Event_1y5wove" targetRef="Event_0esw3wo" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="TaskListenerProcess">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="152" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_17v1ir6_di" bpmnElement="Event_17v1ir6">
+        <dc:Bounds x="582" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0iqsca3_di" bpmnElement="Mein_UserTask">
+        <dc:Bounds x="240" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0esw3wo_di" bpmnElement="Event_0esw3wo">
+        <dc:Bounds x="582" y="222" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1n5mglc_di" bpmnElement="Event_1y5wove">
+        <dc:Bounds x="282" y="142" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="257" y="185" width="87" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_03pkf36_di" bpmnElement="Flow_03pkf36">
+        <di:waypoint x="188" y="120" />
+        <di:waypoint x="240" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03zfe3j_di" bpmnElement="Flow_03zfe3j">
+        <di:waypoint x="340" y="120" />
+        <di:waypoint x="582" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1njcnfl_di" bpmnElement="Flow_1njcnfl">
+        <di:waypoint x="300" y="178" />
+        <di:waypoint x="300" y="240" />
+        <di:waypoint x="582" y="240" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
