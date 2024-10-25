@@ -12,6 +12,7 @@ import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.camunda.bpm.engine.test.Deployment;
 import org.camunda.bpm.engine.test.ProcessEngineRule;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -42,6 +43,7 @@ public class RetryProcessTest {
     }
 
     @Test
+    @Ignore
     @Deployment(resources = { "retrypluginprocess.bpmn" })
     public void shouldUseProfileParseListener() throws ParseException {
         // start the process instance

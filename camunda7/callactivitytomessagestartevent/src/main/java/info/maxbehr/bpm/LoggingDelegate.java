@@ -14,9 +14,5 @@ public class LoggingDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) throws Exception {
         log.info("PID {} Input {}", execution.getProcessInstanceId(), execution.getVariable("input"));
-        if ("zwei".equals((String) execution.getVariable("input"))) {
-            throw new RuntimeException("Ich bin kaputt");
-        }
-        Thread.sleep(1000L);
     }
 }
