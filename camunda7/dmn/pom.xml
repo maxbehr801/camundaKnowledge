@@ -23,31 +23,6 @@
     </dependency>
 
     <dependency>
-      <groupId>org.camunda.bpm.springboot</groupId>
-      <artifactId>camunda-bpm-spring-boot-starter-webapp</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.camunda.bpm</groupId>
-      <artifactId>camunda-engine-plugin-spin</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.camunda.spin</groupId>
-      <artifactId>camunda-spin-dataformat-all</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.camunda.bpm.springboot</groupId>
-      <artifactId>camunda-bpm-spring-boot-starter-test</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-    </dependency>
-
-    <dependency>
       <groupId>de.odysseus.juel</groupId>
       <artifactId>juel-api</artifactId>
       <version>${juel.version}</version>
@@ -68,7 +43,7 @@
     <dependency>
       <groupId>org.camunda.bpm.dmn</groupId>
       <artifactId>camunda-dmn-junit5</artifactId>
-      <version>7.20.0</version>
+      <version>${camunda.version}</version>
       <scope>test</scope>
     </dependency>
 
