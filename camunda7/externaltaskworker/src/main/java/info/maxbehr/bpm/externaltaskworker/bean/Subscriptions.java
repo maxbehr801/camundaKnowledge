@@ -1,5 +1,6 @@
 package info.maxbehr.bpm.externaltaskworker.bean;
 
+import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.client.spring.SpringTopicSubscription;
 import org.camunda.bpm.client.spring.event.SubscriptionInitializedEvent;
@@ -8,8 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.PostConstruct;
 
 @RestController
 @RequestMapping("/handler")

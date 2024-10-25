@@ -1,11 +1,10 @@
 package info.maxbehr.bpm.delegate;
 
+import jakarta.inject.Named;
 import org.camunda.bpm.engine.delegate.BpmnError;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.stereotype.Component;
-
-import javax.inject.Named;
 
 @Component
 @Named
