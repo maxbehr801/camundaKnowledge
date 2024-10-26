@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_1gecuxc">
     <bpmn:participant id="camunda" name="Camunda" processRef="beschwerdebearbeitung" />
   </bpmn:collaboration>
-  <bpmn:process id="beschwerdebearbeitung" name="Beschwerdebearbeitung" isExecutable="true">
+  <bpmn:process id="beschwerdebearbeitung" name="Beschwerdebearbeitung" isExecutable="true" camunda:historyTimeToLive="P1D">
     <bpmn:startEvent id="Start_Beschwerdeprozess" name="Beschwerde eingegangen">
       <bpmn:extensionElements>
         <camunda:formData>

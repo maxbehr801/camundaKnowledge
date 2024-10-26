@@ -3,7 +3,7 @@
   <bpmn:message id="Message_2ith3r9" name="waitMessage" />
   <bpmn:message id="Message_3j40gj3" name="resumeMessage" />
   <bpmn:message id="Message_3a7np06" name="eventProcessEndedMessage" />
-  <bpmn:process id="StarterProcess" name="StarterProcess" isExecutable="true">
+  <bpmn:process id="StarterProcess" name="StarterProcess" isExecutable="true" camunda:historyTimeToLive="P1D">
     <bpmn:startEvent id="StarterProcess_Start" name="StarterProcess_Start" camunda:asyncBefore="true" camunda:asyncAfter="true">
       <bpmn:extensionElements>
         <camunda:executionListener delegateExpression="${loggingDelegate}" event="end" />

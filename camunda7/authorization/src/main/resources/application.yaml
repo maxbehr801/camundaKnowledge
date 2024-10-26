@@ -7,4 +7,4 @@ camunda:
     authorization:
       enabled: true
     database:
-      schema-update: false
+      schema-update: true

@@ -14,7 +14,7 @@
 	<description>externaltaskworker</description>
 
 	<properties>
-		<camunda-bpm-spring-boot-starter-external-task-client.version>7.18.0</camunda-bpm-spring-boot-starter-external-task-client.version>
+		<camunda-bpm-spring-boot-starter-external-task-client.version>7.22.0</camunda-bpm-spring-boot-starter-external-task-client.version>
 		<glassfish.jaxb.version>2.3.3</glassfish.jaxb.version>
 	</properties>
 	<dependencies>

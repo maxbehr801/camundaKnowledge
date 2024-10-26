@@ -12,9 +12,7 @@ import java.util.Map;
 
 @Component
 @Slf4j
-@ExternalTaskSubscription(
-        topicName = "externalworkbean",
-        autoOpen = false)
+@ExternalTaskSubscription(topicName = "externalworkbean", autoOpen = false)
 public class TaskWorker implements ExternalTaskHandler {
 
     @Override

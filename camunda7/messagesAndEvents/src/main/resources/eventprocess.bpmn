@@ -3,7 +3,7 @@
   <bpmn:message id="Message_24k4d57" name="StartProcess_Message" />
   <bpmn:message id="Message_2eikn5p" name="waitMessage" />
   <bpmn:message id="Message_3tt0672" name="resumeMessage" />
-  <bpmn:process id="EventProcess" name="EventProcess" isExecutable="true">
+  <bpmn:process id="EventProcess" name="EventProcess" isExecutable="true" camunda:historyTimeToLive="P1D">
     <bpmn:startEvent id="Start_Eventprocess" name="Start Eventprocess" camunda:asyncBefore="true" camunda:asyncAfter="true">
       <bpmn:outgoing>Flow_1xm9lru</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0cn5y9u" messageRef="Message_24k4d57" />
