@@ -1,0 +1,12 @@
+plugins {
+    id 'core-conventions'
+}
+
+dependencies {
+    implementation("io.camunda.connector:connector-core:$CAMUNDA_8_CONNECTOR_VERSION")
+    implementation("io.camunda.connector:connector-validation:$CAMUNDA_8_CONNECTOR_VERSION")
+    implementation("org.slf4j:slf4j-api")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("io.camunda:zeebe-process-test-extension-testcontainer:$CAMUNDA_8_VERSION")
+}

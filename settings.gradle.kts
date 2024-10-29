@@ -18,5 +18,6 @@ include(":camunda7:tasklistenerexception")
 include(":camunda7:variablemapping")
 include(":camunda7:vier-augen-prinzip")
 include(":camunda7:work_with_suspended_process_definitions")
-
-// include 'camunda8'
+include(":camunda8")
+include(":camunda8:connectortest")
+include(":camunda8:workertest")
