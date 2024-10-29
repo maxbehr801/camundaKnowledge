@@ -1,0 +1,19 @@
+plugins {
+    id 'core-conventions'
+}
+
+dependencyManagement {
+    dependencies {
+        imports {
+            mavenBom "org.camunda.bpm:camunda-bom:$CAMUNDA_VERSION"
+        }
+    }
+}
+
+dependencies {
+    implementation 'org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp'
+    implementation 'org.camunda.bpm:camunda-engine-plugin-spin'
+    implementation 'org.camunda.spin:camunda-spin-dataformat-all'
+    testImplementation 'org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-test'
+    implementation 'com.h2database:h2'
+}
