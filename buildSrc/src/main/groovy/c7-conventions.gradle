@@ -5,7 +5,7 @@ plugins {
 dependencyManagement {
     dependencies {
         imports {
-            mavenBom "org.camunda.bpm:camunda-bom:$CAMUNDA_VERSION"
+            mavenBom "org.camunda.bpm:camunda-bom:$CAMUNDA_7_VERSION"
         }
     }
 }
