@@ -16,4 +16,6 @@ dependencies {
     implementation 'org.camunda.spin:camunda-spin-dataformat-all'
     implementation 'com.h2database:h2'
     testImplementation 'org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-test'
+    testImplementation 'org.camunda.bpm:camunda-bpm-junit5'
+    testImplementation 'org.assertj:assertj-core'
 }
