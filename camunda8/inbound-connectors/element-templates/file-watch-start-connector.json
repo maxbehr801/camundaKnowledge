@@ -1,0 +1,106 @@
+{
+  "$schema": "https://unpkg.com/@camunda/zeebe-element-templates-json-schema/resources/schema.json",
+  "name": "File Watch Start Connector",
+  "id": "c9f8bb72-87fc-43a9-a657-7be4db0471fa",
+  "version": 1732892557613,
+  "description": "File Watch Start Connector",
+  "appliesTo": [
+    "bpmn:StartEvent"
+  ],
+  "properties": [
+    {
+      "id": "eventToMonitor",
+      "label": "Event to monitor",
+      "group": "config",
+      "description": "Select type of file event to monitor",
+      "value": "",
+      "type": "Dropdown",
+      "choices": [
+        {
+          "name": "Create",
+          "value": "ENTRY_CREATE"
+        },
+        {
+          "name": "Modify",
+          "value": "ENTRY_MODIFY"
+        },
+        {
+          "name": "Delete",
+          "value": "ENTRY_DELETE"
+        }
+      ],
+      "binding": {
+        "type": "zeebe:property",
+        "name": "eventToMonitor"
+      }
+    },
+    {
+      "type": "String",
+      "label": "Directory to monitor",
+      "feel": "optional",
+      "group": "config",
+      "description": "Directory to monitor for file events",
+      "value": "",
+      "binding": {
+        "type": "zeebe:property",
+        "name": "directory"
+      }
+    },
+    {
+      "type": "String",
+      "label": "Polling interval in seconds",
+      "feel": "optional",
+      "group": "config",
+      "description": "Long polling interval",
+      "value": "",
+      "binding": {
+        "type": "zeebe:property",
+        "name": "pollingInterval"
+      }
+    },
+    {
+      "label": "Event variable",
+      "type": "String",
+      "group": "output",
+      "optional": true,
+      "binding": {
+        "type": "zeebe:property",
+        "name": "resultVariable"
+      },
+      "description": "Name of the variable to store the contents of the inbound event"
+    },
+    {
+      "label": "Variable expression",
+      "type": "String",
+      "group": "output",
+      "feel": "required",
+      "optional": true,
+      "binding": {
+        "type": "zeebe:property",
+        "name": "resultExpression"
+      },
+      "description": "Expression to map elements of the inbound event to process variables"
+    },
+    {
+      "type": "Hidden",
+      "value": "io.camunda:watchserviceinbound:1",
+      "binding": {
+        "type": "zeebe:property",
+        "name": "inbound.type"
+      }
+    }
+  ],
+  "elementType": {
+    "value": "bpmn:StartEvent"
+  },
+  "groups": [
+    {
+      "id": "config",
+      "label": "Connector Configuration"
+    },
+    {
+      "id": "output",
+      "label": "Output"
+    }
+  ]
+}
