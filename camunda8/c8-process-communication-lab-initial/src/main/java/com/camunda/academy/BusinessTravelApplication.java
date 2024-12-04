@@ -1,9 +1,9 @@
 package com.camunda.academy;
 
-import com.camunda.academy.handler.BookingRequestHandler;
-import com.camunda.academy.handler.NotifyCustomerTravelCancelledHandler;
-import com.camunda.academy.handler.NotifyCustomerTravelConfirmedHandler;
-import com.camunda.academy.handler.NotifyEmployeeTravelPolicyChangedHandler;
+import info.maxbehr.bpm.handler.BookingRequestHandler;
+import info.maxbehr.bpm.handler.NotifyCustomerTravelCancelledHandler;
+import info.maxbehr.bpm.handler.NotifyCustomerTravelConfirmedHandler;
+import info.maxbehr.bpm.handler.NotifyEmployeeTravelPolicyChangedHandler;
 import io.camunda.zeebe.client.ZeebeClient;
 import io.camunda.zeebe.client.api.worker.JobWorker;
 import io.camunda.zeebe.client.impl.oauth.OAuthCredentialsProvider;

@@ -1,7 +1,7 @@
 package com.camunda.academy;
 
-import com.camunda.academy.handler.NotifyConsultantExpensesReimbursedHandler;
-import com.camunda.academy.handler.ReimburseExpensesHandler;
+import info.maxbehr.bpm.handler.NotifyConsultantExpensesReimbursedHandler;
+import info.maxbehr.bpm.handler.ReimburseExpensesHandler;
 import io.camunda.zeebe.client.ZeebeClient;
 import io.camunda.zeebe.client.api.worker.JobWorker;
 import io.camunda.zeebe.client.impl.oauth.OAuthCredentialsProvider;

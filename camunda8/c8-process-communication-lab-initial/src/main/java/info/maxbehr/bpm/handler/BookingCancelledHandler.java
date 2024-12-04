@@ -1,4 +1,4 @@
-package com.camunda.academy.handler;
+package info.maxbehr.bpm.handler;
 
 import io.camunda.zeebe.client.ZeebeClient;
 import io.camunda.zeebe.client.api.response.ActivatedJob;
@@ -14,11 +14,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-public class BookingConfirmedHandler implements JobHandler{
+public class BookingCancelledHandler implements JobHandler{
 	
-		//Process Definition Details
-		private static final String MESSAGE_NAME = "msg_bookingConfirmed";	
-
+	//Process Definition Details
+		private static final String MESSAGE_NAME = "msg_bookingCancelled";
+		
 	    @Override
 	    public void handle(JobClient client, ActivatedJob job) throws Exception {
 	    	
@@ -29,8 +29,6 @@ public class BookingConfirmedHandler implements JobHandler{
 	    	final String travelDate = (String) inputVariables.get("travelDate");
 	    	final String travelFlight =  (String) inputVariables.get("travelFlight");
 	    	final String travelHotel =  (String) inputVariables.get("travelHotel");
-	    	
-	    	
 	    	
 	    	//Load credentials from resources/config.properties file
 	    	Properties properties = loadProperties("src/main/resources/cluster.properties");
@@ -73,7 +71,7 @@ public class BookingConfirmedHandler implements JobHandler{
 		    		.send()
 		    		.join();
 		    	
-		    	System.out.println(travelRequestId + " Travel Request: Confirmation sent");	
+		    	System.out.println(travelRequestId + " Travel Request: Booking cancellation sent");	
 		    	
 		    	//Complete the Job
 		    	client.newCompleteCommand(job.getKey()).variables(messageVariables).send().join();

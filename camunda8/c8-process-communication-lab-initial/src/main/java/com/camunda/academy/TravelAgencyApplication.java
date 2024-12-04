@@ -1,8 +1,8 @@
 package com.camunda.academy;
 
-import com.camunda.academy.handler.BookingCancelledHandler;
-import com.camunda.academy.handler.BookingConfirmedHandler;
-import com.camunda.academy.handler.BookingFlightAndHotelHandler;
+import info.maxbehr.bpm.handler.BookingCancelledHandler;
+import info.maxbehr.bpm.handler.BookingConfirmedHandler;
+import info.maxbehr.bpm.handler.BookingFlightAndHotelHandler;
 import io.camunda.zeebe.client.ZeebeClient;
 import io.camunda.zeebe.client.api.worker.JobWorker;
 import io.camunda.zeebe.client.impl.oauth.OAuthCredentialsProvider;

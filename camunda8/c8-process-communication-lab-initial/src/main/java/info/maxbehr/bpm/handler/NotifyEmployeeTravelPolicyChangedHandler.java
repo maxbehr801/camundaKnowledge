@@ -1,4 +1,4 @@
-package com.camunda.academy.handler;
+package info.maxbehr.bpm.handler;
 
 import io.camunda.zeebe.client.api.response.ActivatedJob;
 import io.camunda.zeebe.client.api.worker.JobClient;
